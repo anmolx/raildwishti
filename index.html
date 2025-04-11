@@ -4,9 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>RailDrishti Dashboard</title>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.22.17/babel.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/alpinejs/3.12.0/cdn.min.js" defer></script>
   
   <style>
     * {
@@ -15,17 +13,8 @@
       box-sizing: border-box;
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     }
-    
-    body {
-      background-color: #fff;
-      color: #333;
-    }
-    
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 20px;
-    }
+    body { background-color: #fff; color: #333; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
     
     .header {
       display: flex;
@@ -36,11 +25,7 @@
       box-shadow: 0 1px 3px rgba(0,0,0,0.1);
     }
     
-    .logo {
-      font-weight: bold;
-      font-size: 18px;
-      color: #333;
-    }
+    .logo { font-weight: bold; font-size: 18px; color: #333; }
     
     .emergency-btn {
       background-color: #6c5ce7;
@@ -52,15 +37,8 @@
       cursor: pointer;
     }
     
-    .section {
-      margin: 30px 0;
-    }
-    
-    .section-title {
-      font-size: 24px;
-      font-weight: bold;
-      margin-bottom: 20px;
-    }
+    .section { margin: 30px 0; }
+    .section-title { font-size: 24px; font-weight: bold; margin-bottom: 20px; }
     
     .status-cards {
       display: grid;
@@ -75,22 +53,9 @@
       box-shadow: 0 1px 2px rgba(0,0,0,0.05);
     }
     
-    .status-icon {
-      margin-bottom: 15px;
-      color: #6c5ce7;
-    }
-    
-    .status-label {
-      font-size: 16px;
-      color: #555;
-      margin-bottom: 5px;
-    }
-    
-    .status-value {
-      font-size: 24px;
-      font-weight: bold;
-      color: #4a7bfc;
-    }
+    .status-icon { margin-bottom: 15px; color: #6c5ce7; }
+    .status-label { font-size: 16px; color: #555; margin-bottom: 5px; }
+    .status-value { font-size: 24px; font-weight: bold; color: #4a7bfc; }
     
     .camera-feed {
       margin: 30px 0;
@@ -99,10 +64,7 @@
       box-shadow: 0 1px 3px rgba(0,0,0,0.1);
     }
     
-    .camera-feed img {
-      width: 100%;
-      display: block;
-    }
+    .camera-feed img { width: 100%; display: block; }
     
     .alert-section {
       background-color: #f8f9fe;
@@ -118,38 +80,12 @@
       margin-bottom: 15px;
     }
     
-    .alert-icon {
-      color: #ff4757;
-    }
-    
-    .alert-content {
-      flex: 1;
-    }
-    
-    .alert-tag {
-      color: #ff4757;
-      font-size: 14px;
-      font-weight: 500;
-      margin-bottom: 5px;
-    }
-    
-    .alert-title {
-      color: #ff4757;
-      font-size: 18px;
-      font-weight: bold;
-      margin-bottom: 10px;
-    }
-    
-    .alert-message {
-      color: #666;
-      font-size: 14px;
-      margin-bottom: 20px;
-    }
-    
-    .alert-actions {
-      display: flex;
-      gap: 10px;
-    }
+    .alert-icon { color: #ff4757; }
+    .alert-content { flex: 1; }
+    .alert-tag { color: #ff4757; font-size: 14px; font-weight: 500; margin-bottom: 5px; }
+    .alert-title { color: #ff4757; font-size: 18px; font-weight: bold; margin-bottom: 10px; }
+    .alert-message { color: #666; font-size: 14px; margin-bottom: 20px; }
+    .alert-actions { display: flex; gap: 10px; }
     
     .btn-primary {
       background-color: #6c5ce7;
@@ -171,177 +107,135 @@
       cursor: pointer;
     }
     
-    .hidden {
-      display: none;
-    }
+    .hidden { display: none; }
 
-    @media (max-width: 768px) {
-      .status-cards {
-        grid-template-columns: repeat(2, 1fr);
-      }
-    }
-    
-    @media (max-width: 480px) {
-      .status-cards {
-        grid-template-columns: 1fr;
-      }
-    }
+    @media (max-width: 768px) { .status-cards { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 480px) { .status-cards { grid-template-columns: 1fr; } }
   </style>
 </head>
 <body>
-  <div id="root"></div>
-
-  <script type="text/babel">
-    // Icons
-    const AlertIcon = () => (
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-        <line x1="12" y1="9" x2="12" y2="13" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-        <line x1="12" y1="17" x2="12.01" y2="17" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-      </svg>
-    );
+  <div x-data="dashboard">
+    <header class="header">
+      <div class="logo">RailDrishti</div>
+      <button class="emergency-btn" @click="emergencyStop">Emergency Stop</button>
+    </header>
     
-    const SpeedIcon = () => (
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="12" cy="12" r="10" stroke="#6c5ce7" strokeWidth="2"/>
-        <polyline points="12 6 12 12 16 14" stroke="#6c5ce7" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-      </svg>
-    );
-    
-    const TrainIcon = () => (
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <rect x="5" y="5" width="14" height="14" rx="2" stroke="#6c5ce7" strokeWidth="2"/>
-        <path d="M12 5V3" stroke="#6c5ce7" strokeWidth="2" strokeLinecap="round"/>
-        <path d="M12 21v-2" stroke="#6c5ce7" strokeWidth="2" strokeLinecap="round"/>
-        <circle cx="8" cy="15" r="1" stroke="#6c5ce7" strokeWidth="2"/>
-        <circle cx="16" cy="15" r="1" stroke="#6c5ce7" strokeWidth="2"/>
-        <path d="M5 10h14" stroke="#6c5ce7" strokeWidth="2"/>
-      </svg>
-    );
-    
-    const LocationIcon = () => (
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="12" cy="10" r="3" stroke="#6c5ce7" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-        <path d="M12 21.7C17.3 17 20 13 20 10a8 8 0 1 0-16 0c0 3 2.7 6.9 8 11.7z" stroke="#6c5ce7" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-      </svg>
-    );
-
-    // Main Dashboard Component
-    const RailDrishtiDashboard = () => {
-      const [alertInfo, setAlertInfo] = React.useState({active: false, message: "", objects: []});
-      const [trainData, setTrainData] = React.useState({
-        speed: "Loading...",
-        trainNumber: "Loading...",
-        destination: "Loading...",
-        nextStop: "Loading..."
-      });
-      
-      const API_URL = "http://127.0.0.1:5000";
-      
-      React.useEffect(() => {
-        const fetchData = () => {
-          fetch(`${API_URL}/api/alert-status`)
-            .then(res => res.json())
-            .then(data => setAlertInfo(data))
-            .catch(err => console.error("Error fetching alert status:", err));
-            
-          fetch(`${API_URL}/api/train-data`)
-            .then(res => res.json())
-            .then(data => setTrainData(data))
-            .catch(err => console.error("Error fetching train data:", err));
-        };
-        
-        fetchData();
-        const dataInterval = setInterval(fetchData, 5000);
-        return () => clearInterval(dataInterval);
-      }, []);
-      
-      const handleEmergencyStop = () => {
-        fetch(`${API_URL}/api/emergency-stop`, {method: 'POST'})
-          .then(res => res.json())
-          .then(data => alert(data.message))
-          .catch(err => console.error("Error:", err));
-      };
-      
-      const handleAcknowledge = () => {
-        fetch(`${API_URL}/api/acknowledge-alert`, {method: 'POST'})
-          .then(res => res.json())
-          .then(data => alert(data.message))
-          .catch(err => console.error("Error:", err));
-      };
-      
-      const handleViewDetails = () => {
-        alert("Alert Details: " + alertInfo.message);
-      };
-      
-      return (
-        <div className="dashboard">
-          <header className="header">
-            <div className="logo">RailDrishti</div>
-            <button className="emergency-btn" onClick={handleEmergencyStop}>
-              Emergency Stop
-            </button>
-          </header>
+    <div class="container">
+      <section class="section">
+        <h2 class="section-title">Train Status</h2>
+        <div class="status-cards">
+          <div class="status-card">
+            <div class="status-icon" x-html="icons.speed"></div>
+            <p class="status-label">Current Speed</p>
+            <p class="status-value" x-text="trainData.speed"></p>
+          </div>
           
-          <div className="container">
-            <section className="section">
-              <h2 className="section-title">Train Status</h2>
-              <div className="status-cards">
-                <div className="status-card">
-                  <div className="status-icon"><SpeedIcon /></div>
-                  <p className="status-label">Current Speed</p>
-                  <p className="status-value">{trainData.speed}</p>
-                </div>
-                
-                <div className="status-card">
-                  <div className="status-icon"><TrainIcon /></div>
-                  <p className="status-label">Train Number</p>
-                  <p className="status-value">{trainData.trainNumber}</p>
-                </div>
-                
-                <div className="status-card">
-                  <div className="status-icon"><LocationIcon /></div>
-                  <p className="status-label">Destination</p>
-                  <p className="status-value">{trainData.destination}</p>
-                </div>
-                
-                <div className="status-card">
-                  <div className="status-icon"><LocationIcon /></div>
-                  <p className="status-label">Next Stop</p>
-                  <p className="status-value">{trainData.nextStop}</p>
-                </div>
-              </div>
-            </section>
-            
-            <section className="section">
-              <h2 className="section-title">Live Camera Feed</h2>
-              <div className="camera-feed">
-                <img src={`${API_URL}/video_feed`} alt="Live camera feed" />
-              </div>
-            </section>
-            
-            <section className={`alert-section ${!alertInfo.active ? 'hidden' : ''}`}>
-              <div className="alert-header">
-                <div className="alert-icon"><AlertIcon /></div>
-                <div className="alert-content">
-                  <div className="alert-tag">ALERT</div>
-                  <h3 className="alert-title">Obstacle Detected</h3>
-                  <p className="alert-message">
-                    {alertInfo.message || "Potential obstacle detected. Caution advised."}
-                  </p>
-                  <div className="alert-actions">
-                    <button className="btn-primary" onClick={handleAcknowledge}>Acknowledge</button>
-                    <button className="btn-secondary" onClick={handleViewDetails}>View Details</button>
-                  </div>
-                </div>
-              </div>
-            </section>
+          <div class="status-card">
+            <div class="status-icon" x-html="icons.train"></div>
+            <p class="status-label">Train Number</p>
+            <p class="status-value" x-text="trainData.trainNumber"></p>
+          </div>
+          
+          <div class="status-card">
+            <div class="status-icon" x-html="icons.location"></div>
+            <p class="status-label">Destination</p>
+            <p class="status-value" x-text="trainData.destination"></p>
+          </div>
+          
+          <div class="status-card">
+            <div class="status-icon" x-html="icons.location"></div>
+            <p class="status-label">Next Stop</p>
+            <p class="status-value" x-text="trainData.nextStop"></p>
           </div>
         </div>
-      );
-    };
-    
-    ReactDOM.render(<RailDrishtiDashboard />, document.getElementById('root'));
+      </section>
+      
+      <section class="section">
+        <h2 class="section-title">Live Camera Feed</h2>
+        <div class="camera-feed">
+          <img :src="apiUrl + '/video_feed'" alt="Live camera feed" />
+        </div>
+      </section>
+      
+      <section class="alert-section" x-show="alertInfo.active">
+        <div class="alert-header">
+          <div class="alert-icon" x-html="icons.alert"></div>
+          <div class="alert-content">
+            <div class="alert-tag">ALERT</div>
+            <h3 class="alert-title">Obstacle Detected</h3>
+            <p class="alert-message" x-text="alertInfo.message || 'Potential obstacle detected. Caution advised.'"></p>
+            <div class="alert-actions">
+              <button class="btn-primary" @click="acknowledgeAlert">Acknowledge</button>
+              <button class="btn-secondary" @click="viewDetails">View Details</button>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('alpine:init', () => {
+      Alpine.data('dashboard', () => ({
+        apiUrl: 'http://127.0.0.1:5000',
+        alertInfo: { active: false, message: "", objects: [] },
+        trainData: {
+          speed: "Loading...",
+          trainNumber: "Loading...",
+          destination: "Loading...",
+          nextStop: "Loading..."
+        },
+        icons: {
+          speed: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="10" stroke="#6c5ce7" stroke-width="2"/><polyline points="12 6 12 12 16 14" stroke="#6c5ce7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+          train: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="5" y="5" width="14" height="14" rx="2" stroke="#6c5ce7" stroke-width="2"/><path d="M12 5V3" stroke="#6c5ce7" stroke-width="2" stroke-linecap="round"/><path d="M12 21v-2" stroke="#6c5ce7" stroke-width="2" stroke-linecap="round"/><circle cx="8" cy="15" r="1" stroke="#6c5ce7" stroke-width="2"/><circle cx="16" cy="15" r="1" stroke="#6c5ce7" stroke-width="2"/><path d="M5 10h14" stroke="#6c5ce7" stroke-width="2"/></svg>',
+          location: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="10" r="3" stroke="#6c5ce7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 21.7C17.3 17 20 13 20 10a8 8 0 1 0-16 0c0 3 2.7 6.9 8 11.7z" stroke="#6c5ce7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+          alert: '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><line x1="12" y1="9" x2="12" y2="13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><line x1="12" y1="17" x2="12.01" y2="17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>'
+        },
+        
+        init() {
+          this.fetchData();
+          setInterval(() => this.fetchData(), 5000);
+        },
+        
+        async fetchData() {
+          try {
+            const [alertResponse, trainResponse] = await Promise.all([
+              fetch(`${this.apiUrl}/api/alert-status`),
+              fetch(`${this.apiUrl}/api/train-data`)
+            ]);
+            
+            if(alertResponse.ok) this.alertInfo = await alertResponse.json();
+            if(trainResponse.ok) this.trainData = await trainResponse.json();
+          } catch (err) {
+            console.error("Error fetching data:", err);
+          }
+        },
+        
+        async emergencyStop() {
+          try {
+            const res = await fetch(`${this.apiUrl}/api/emergency-stop`, {method: 'POST'});
+            const data = await res.json();
+            alert(data.message);
+          } catch (err) {
+            console.error("Error:", err);
+          }
+        },
+        
+        async acknowledgeAlert() {
+          try {
+            const res = await fetch(`${this.apiUrl}/api/acknowledge-alert`, {method: 'POST'});
+            const data = await res.json();
+            alert(data.message);
+          } catch (err) {
+            console.error("Error:", err);
+          }
+        },
+        
+        viewDetails() {
+          alert("Alert Details: " + this.alertInfo.message);
+        }
+      }));
+    });
   </script>
 </body>
 </html>
